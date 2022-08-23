@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.WarehouseMapper">
+    <select id="selectAll" resultType="DB.Warehouse">
+        select * from Warehouse where Warehouse.managerId = #{managerId};
+    </select>
+    <select id="orderByVolume" resultType="DB.Warehouse">
+        select * from Warehouse where Warehouse.managerId = #{managerId} order by wVolume;
+    </select>
+    <select id="add" >
+        insert into Warehouse values(#{warehouse.warehouseId},#{warehouse.name},#{warehouse.wVolume},#{warehouse.wLeftVolume},#{warehouse.managerId},#{warehouse.company},#{warehouse.wShelfNum});
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+<!--                DB connection inf-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://dev.metattri.com:3308/Group37?useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="xbz123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+<!--    add mappers-->
+    <mappers>
+        <mapper resource="mapper/ManagerMapper.xml"/>
+        <mapper resource="mapper/WarehouseMapper.xml"/>
+        <mapper resource="mapper/WorkerMapper.xml"/>
+        <mapper resource="mapper/GoodMapper.xml"/>
+    </mappers>
+</configuration>

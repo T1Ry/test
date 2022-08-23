@@ -1,0 +1,230 @@
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Warehouses Information</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+<!--    <script>-->
+<!--        function deleteUser(userId){-->
+<!--            if(window.confirm("确定删除这条记录吗？"+userId)){-->
+<!--                // console.log("用户记录删除成功")-->
+<!--                location.href="/userServlet?type=delete&id="+userId;-->
+<!--            };-->
+<!--        }-->
+<!--        function queryUser(userId){-->
+<!--            location.href="/userServlet?type=queryById&id="+userId;-->
+<!--        }-->
+<!--    </script>-->
+
+</head>
+
+<body class="gray-bg">
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Warehouses Information</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="table_data_tables.html#">pending</a>
+                            </li>
+                            <li><a href="table_data_tables.html#">pending</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped table-bordered table-hover " id="editable">
+                        <thead>
+                        <tr>
+                            <th>warehouseId</th>
+                            <th>name</th>
+                            <th>wVolume</th>
+                            <th>wLeftVolume</th>
+                            <th>managerId</th>
+                            <th>company</th>
+                            <th>wShelfNum</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr class="gradeA">
+                            <td><input type="text" id="warehouseId" name="warehouseId" class="form-control" placeholder="warehouseId"></td>
+                            <td><input type="text" id="name" name="name" class="form-control" placeholder="name"></td>
+                            <td><input type="text" id="wVolume" name="wVolume" class="form-control" placeholder="wVolume"></td>
+                            <td><input type="text" id="wLeftVolume" name="wLeftVolume" class="form-control" placeholder="wLeftVolume"></td>
+                            <td><input type="text" id="managerId" name="" class="form-control" placeholder="managerId"></td>
+                            <td><input type="text" id="company" name="" class="form-control" placeholder="company"></td>
+                            <td><input type="text" id="wShelfNum" name="" class="form-control" placeholder="wShelfNum"></td>
+
+                        </tr>
+
+                        </tbody>
+                        <!--                        <tfoot>-->
+                        <!--                        <tr>-->
+                        <!--                            <th>company</th>-->
+                        <!--                            <th>name</th>-->
+                        <!--                            <th>gender</th>-->
+                        <!--                            <th>age</th>-->
+                        <!--                            <th>telephone</th>-->
+                        <!--                            <th>warehouseId</th>-->
+                        <!--                            <th>password</th>-->
+                        <!--                        </tr>-->
+                        <!--                        </tfoot>-->
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <form class="m-t" role="form"  method="post">
+        <!--        <div class="form-group">-->
+        <!--        <input id="workInput" type="text" name="company" class="form-control" placeholder="Please input the company you want to delete.">-->
+
+        <button id="add"   type="button" class="btn btn-primary block full-width m-b">Add Warehouse</button>
+    </form>
+
+</div>
+
+
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    //click event
+    document.getElementById("add").onclick = function () {
+        //change form data to json
+        var warehousedata={
+            warehouseId:"",
+            name:"",
+            wVolume:"",
+            wLeftVolume:"",
+            managerId:"",
+            company:"",
+            wShelfNum:"",
+        }
+        let warehouseId = document.getElementById("warehouseId").value;
+        warehousedata.warehouseId = warehouseId;
+
+        let name = document.getElementById("name").value;
+        warehousedata.name = name;
+
+        let wVolume = document.getElementById("wVolume").value;
+        warehousedata.wVolume = wVolume;
+
+        let wLeftVolume = document.getElementById("wLeftVolume").value;
+        warehousedata.wLeftVolume = wLeftVolume;
+
+        let managerId = document.getElementById("managerId").value;
+        warehousedata.managerId = managerId;
+
+        let company = document.getElementById("company").value;
+        warehousedata.company = company;
+
+        let wShelfNum = document.getElementById("wShelfNum").value;
+        warehousedata.wShelfNum = wShelfNum;
+        console.log(warehousedata);
+        //set ajax
+        axios({
+            method: "post",
+            url: "http://localhost:80/DB22/addWarehouseServlet",
+            data: warehousedata
+        }).then(function (resp) {
+            //figure
+            if(resp.data =="success"){
+                location.href = "warehouse.html";
+            }
+        })
+    }
+</script>
+
+
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.7"></script>
+
+
+
+<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+
+<!-- Data Tables -->
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
+
+
+<!-- Page-Level Scripts -->
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('.dataTables-example').dataTable();-->
+
+<!--        /* Init DataTables */-->
+<!--        var oTable = $('#editable').dataTable();-->
+
+<!--        /* Apply the jEditable handlers to the table */-->
+<!--        oTable.$('td').editable('../example_ajax.php', {-->
+<!--            "callback": function (sValue, y) {-->
+<!--                var aPos = oTable.fnGetPosition(this);-->
+<!--                oTable.fnUpdate(sValue, aPos[0], aPos[1]);-->
+<!--            },-->
+<!--            "submitdata": function (value, settings) {-->
+<!--                return {-->
+<!--                    "row_id": this.parentNode.getAttribute('id'),-->
+<!--                    "column": oTable.fnGetPosition(this)[2]-->
+<!--                };-->
+<!--            },-->
+
+<!--            "width": "90%",-->
+<!--            "height": "100%"-->
+<!--        });-->
+
+
+<!--    });-->
+
+<!--    function fnClickAddRow() {-->
+<!--        $('#editable').dataTable().fnAddData([-->
+<!--            "Custom row",-->
+<!--            "New row",-->
+<!--            "New row",-->
+<!--            "New row",-->
+<!--            "New row"]);-->
+
+<!--    }-->
+<!--</script>-->
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--统计代码，可删除-->
+
+</body>
+
+</html>

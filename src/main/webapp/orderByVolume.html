@@ -1,0 +1,185 @@
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Warehouses Information</title>
+  <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+  <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+  <!-- Data Tables -->
+  <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+  <script>
+    function deleteUser(userId){
+      if(window.confirm("确定删除这条记录吗？"+userId)){
+        // console.log("用户记录删除成功")
+        location.href="/userServlet?type=delete&id="+userId;
+      };
+    }
+    function queryUser(userId){
+      location.href="/userServlet?type=queryById&id="+userId;
+    }
+  </script>
+
+</head>
+
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Warehouses Information</h5>
+          <div class="ibox-tools">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+              <i class="fa fa-wrench"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+              <li><a href="table_data_tables.html#">pending</a>
+              </li>
+              <li><a href="table_data_tables.html#">pending</a>
+              </li>
+            </ul>
+            <a class="close-link">
+              <i class="fa fa-times"></i>
+            </a>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="">
+            <a  href="addWarehouseInput.html" class="btn btn-primary ">Add Warehouse</a>
+            <a  href="orderByVolume.html" class="btn btn-primary ">Sort by Volume</a>
+<!--            <a onclick="fnClickAddRow();" href="javascript:void(0);" class="btn btn-primary ">Delete Warehouse</a>-->
+
+          </div>
+          <table class="table table-striped table-bordered table-hover " id="editable">
+            <thead>
+            <tr>
+              <th>warehouseId</th>
+              <th>name</th>
+              <th>wVolume</th>
+              <th>wLeftVolume</th>
+              <th>managerId</th>
+              <th>company</th>
+              <th>wShelfNum/th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr class="gradeA">
+              <td>${user.id}</td>
+              <td>${user.userName}</td>
+              <td>${user.phoneNum}</td>
+              <td>${user.email}</td>
+              <td>${user.email}</td>
+              <td>${user.email}</td>
+              <td class="center">${user.email}</td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>warehouseId</th>
+              <th>name</th>
+              <th>wVolume</th>
+              <th>wLeftVolume</th>
+              <th>managerId</th>
+              <th>company</th>
+              <th>wShelfNum</th>
+            </tr>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/axios-0.18.0.js"></script>
+<script>
+  window.onload = function () {
+    axios({
+      method:"get",
+      url:"http://localhost:80/DB22/orderByVolumeServlet"
+    }).then(function (resp) {
+      let warehouses = resp.data;
+      let warehousesData = "<thead>\n" +
+              "                        <tr>\n" +
+              "                            <th>warehouseId</th>\n" +
+              "                            <th>name</th>\n" +
+              "                            <th>wVolume</th>\n" +
+              "                            <th>wLeftVolume</th>\n" +
+              "                            <th>managerId</th>\n" +
+              "                            <th>company</th>\n" +
+              "                            <th>wShelfNum</th>\n" +
+              "                        </tr>\n" +
+              "                        </thead>\n" +
+              "                        <tbody>";
+      for (let i=0;i<warehouses.length;i++){
+        let warehouse = warehouses[i];
+
+        warehousesData+= "<tr class=\"gradeA\">" +
+                "<td>"+warehouse.warehouseId+"</td>\n" +
+                "                                <td>"+warehouse.name+"</td>\n" +
+                "                                <td>"+warehouse.wVolume+"</td>\n" +
+                "                                <td>"+warehouse.wLeftVolume+"</td>\n" +
+                "                                <td>"+warehouse.managerId+"</td>\n" +
+                "                                <td>"+warehouse.company+"</td>\n"+
+                "                                <td class=\"center\">"+warehouse.wShelfNum+"</td>"+
+                "</tr>";
+
+      }
+      warehousesData+="</tbody>\n" +
+              "                        <tfoot>\n" +
+              "                        <tr>\n" +
+              "                            <th>warehouseId</th>\n" +
+              "                            <th>name</th>\n" +
+              "                            <th>wVolume</th>\n" +
+              "                            <th>wLeftVolume</th>\n" +
+              "                            <th>managerId</th>\n" +
+              "                            <th>company</th>\n" +
+              "                            <th>wShelfNum</th>\n" +
+              "                        </tr>\n" +
+              "                        </tfoot>";
+      document.getElementById("editable").innerHTML = warehousesData;
+    })
+
+
+  }
+</script>
+<!-- 全局js -->
+
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.7"></script>
+
+
+
+<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+
+<!-- Data Tables -->
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+
+</body>
+
+</html>

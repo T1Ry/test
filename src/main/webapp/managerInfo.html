@@ -1,0 +1,143 @@
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Personal Information</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <!-- Person Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="wrapper wrapper-content animated fadeInRight">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Personal Information</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="table_data_tables.html#">pending</a>
+                                </li>
+                                <li><a href="table_data_tables.html#">pending</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>warehouseId</th>-->
+<!--                                <th>name</th>-->
+<!--                                <th>wVolume</th>-->
+<!--                                <th>wLeftVolume</th>-->
+<!--                                <th>managerId</th>-->
+<!--                                <th>company</th>-->
+<!--                                <th>wShelfNum/th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+
+<!--                            <tr class="gradeA">-->
+<!--                                <td>${user.id}</td>-->
+<!--                                <td>${user.userName}</td>-->
+<!--                                <td>${user.phoneNum}</td>-->
+<!--                                <td>${user.email}</td>-->
+<!--                                <td>${user.email}</td>-->
+<!--                                <td>${user.email}</td>-->
+<!--                                <td class="center">${user.email}</td>-->
+<!--                            </tr>-->
+
+<!--                            </tbody>-->
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    window.onload = function () {
+        axios({
+            method:"get",
+            url:"http://localhost:80/DB22/managerServlet"
+        }).then(function (resp) {
+            let manager = resp.data;
+            let managersData = "<thead>\n" +
+                "                        <tr>\n" +
+                "                            <th>managerId</th>\n" +
+                "                            <th>name</th>\n" +
+                "                            <th>telephone</th>\n" +
+                "                            <th>age</th>\n" +
+                "                            <th>gender</th>\n" +
+                "                            <th>username</th>\n" +
+                "                            <th>password</th>\n" +
+                "                        </tr>\n" +
+                "                        </thead>\n" +
+                "                        <tbody>";
+
+                managersData+= "<tr class=\"gradeA\">" +
+                    "<td>"+manager.managerId+"</td>\n" +
+                    "                                <td>"+manager.name+"</td>\n" +
+                    "                                <td>"+manager.telephone+"</td>\n" +
+                    "                                <td>"+manager.age+"</td>\n" +
+                    "                                <td>"+manager.gender+"</td>\n" +
+                    "                                <td>"+manager.username+"</td>\n" +
+                    "                                <td class=\"center\">"+manager.password+"</td>"+
+                    "</tr>";
+
+
+
+            document.getElementById("editable").innerHTML = managersData;
+        })
+
+
+    }
+</script>
+    <!-- 全局js -->
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.7"></script>
+
+
+
+    <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+
+    <!-- Data Tables -->
+    <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+
+
+
+</body>
+</html>

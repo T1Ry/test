@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.WorkerMapper">
+    <select id="selectAll" resultType="DB.Worker">
+        select * from Worker where warehouseId in
+                                   (select warehouseId from Warehouse
+                                    where managerId = #{managerId});
+    </select>
+    <select id="delete" >
+        delete from Worker where workId = #{workId};
+    </select>
+    <select id="add">
+        insert into Worker values (#{worker.workId},#{worker.name},#{worker.gender},#{worker.age},#{worker.telephone},#{worker.warehouseId},#{worker.password});
+    </select>
+</mapper>

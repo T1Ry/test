@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ManagerMapper">
+    <select id="selectAll" resultType="DB.Manager">
+        select * from Manager;
+    </select>
+    <select id="selectByName" resultType="DB.Manager">
+        select * from Manager where username = #{username} and password = #{password};
+    </select>
+
+
+    <select id="update">
+        update from Manager where username = #{username} and password = #{password};
+    </select>
+    <select id="delete">
+        delete from Manager where managerId = #{managerId};
+    </select>
+</mapper>

@@ -1,0 +1,108 @@
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Personal Information</title>
+  <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+  <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+  <!-- Person Tables -->
+  <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+  <link href="css/animate.css" rel="stylesheet">
+  <link href="css/style.css?v=4.1.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+
+  <div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>Delete Account</h5>
+            <div class="ibox-tools">
+              <a class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+              </a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
+                <i class="fa fa-wrench"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                <li><a href="table_data_tables.html#">pending</a>
+                </li>
+                <li><a href="table_data_tables.html#">pending</a>
+                </li>
+              </ul>
+              <a class="close-link">
+                <i class="fa fa-times"></i>
+              </a>
+            </div>
+          </div>
+          <div class="ibox-content">
+
+            <div >
+              <span  class="block m-t-xs"><strong class="font-bold">Are you sure you want to delete your account?</strong></span>
+              <span id="name_box" class="block m-t-xs"><strong class="font-bold">---</strong></span>
+              <button id="d_yse"  class="btn btn-primary block full-width m-b">YES</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/axios-0.18.0.js"></script>
+<script>
+    document.getElementById("d_yse").onclick =  function () {
+
+      //set ajax
+      axios({
+        method: "post",
+        url: "http://localhost:80/DB22/deleteManagerServlet",
+      }).then(function (resp) {
+        if(resp.data =="success"){
+          location.href = "http://localhost:80/DB22/login.html";
+        }
+      })
+    }
+    window.onload = function () {
+        axios({
+            method:"get",
+            url:"http://localhost:80/DB22/managerServlet"
+        }).then(function (resp) {
+            let manager = resp.data;
+            document.getElementById("name_box").innerHTML = "Your name is: " + manager.name+", ID is: " +manager.managerId;
+        })
+
+
+    }
+</script>
+<!-- 全局js -->
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.7"></script>
+
+
+
+<script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+
+<!-- Data Tables -->
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
+
+
+</body>
+</html>

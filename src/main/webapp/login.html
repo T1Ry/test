@@ -1,0 +1,85 @@
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>D&B22 Warehouse Management System login</title>
+    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.7" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
+
+<body class="gray-bg">
+<div class="middle-box">
+
+    <h1 class="logo-name">D&B</h1>
+</div>
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+
+        <div>
+            <img src="img/440696.png" width="80" height="80">
+        </div>
+
+        <h2>Welcome to D&B22 Warehouse Management System</h2>
+
+        <form class="m-t" role="form"  action="/DB22/loginServlet" method="post">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="username">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="password" >
+            </div>
+            <button id="submit1" type="submit" class="btn btn-primary block full-width m-b">LOGIN</button>
+            <span id="username_err" class="has-error" style="display: none">Wrong username or password</span>
+
+
+        </form>
+    </div>
+</div>
+
+<script>
+
+    document.getElementById("submit1").onclick = function () {
+        //1.object
+        var xhttp;
+        if (window.XMLHttpRequest) {
+            xhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        //2. set request
+        xhttp.open("GET", "http://localhost:80/DB22/loginServlet");
+        xhttp.send();
+        //3. get response
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                if(this.responseText == "true"){
+                    document.getElementById("username_err").style.display = "";
+                }
+            }
+
+        };
+    }
+
+
+</script>
+<script src="js/jquery.min.js?v=2.1.4"></script>
+<script src="js/bootstrap.min.js?v=3.3.7"></script>
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+
+</body>
+
+</html>
