@@ -1,5 +1,5 @@
 # DB22
 Talent management system
-Group: 只能中午写早晚有bug
-Member：YQC LZWC ZSC XBZ LLH
+Group: 鍙兘涓崍鍐欐棭鏅氭湁bug
+Member锛歒QC LZWC ZSC XBZ LLH
 
