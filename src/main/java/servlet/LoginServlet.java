@@ -33,6 +33,7 @@ public class LoginServlet extends HttpServlet {
         ManagerMapper managerMapper = sqlSession.getMapper(ManagerMapper.class);
 
         Manager manager = managerMapper.selectByName(username,password);
+        System.out.println(manager);
         HttpSession session = req.getSession();
 //        boolean flag = true;
         if(manager != null){
