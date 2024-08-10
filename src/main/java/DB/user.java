@@ -5,12 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-enum Dept{
-    tec,man;
-}
-
 @ToString@Setter@Getter
-@JSONType(orders={"user_id","name","password","authority","department","phone_num"})
+@JSONType(orders={"user_id","name","password","authority","department_id","phone_num"})
 
 
 public class user {
@@ -18,7 +14,7 @@ public class user {
     private String name;
     private String password;
     private int authority;
-    private Dept department;
+    private int department_id;
     private int phone_num;
 
 }
