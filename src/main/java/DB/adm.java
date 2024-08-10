@@ -8,7 +8,7 @@ import lombok.ToString;
 import java.util.Date;
 
 @ToString@Setter@Getter
-@JSONType(department={"adm_id"})
+@JSONType(orders={"adm_id"})
 
 public class adm {
     private int adm_id;

@@ -10,7 +10,7 @@ enum Dept{
 }
 
 @ToString@Setter@Getter
-@JSONType(user={"user_id","name","password","authority","department","phone_num"})
+@JSONType(orders={"user_id","name","password","authority","department","phone_num"})
 
 
 public class user {

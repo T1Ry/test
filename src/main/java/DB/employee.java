@@ -11,11 +11,13 @@ import java.util.Date;
 
 
 @ToString@Setter@Getter
-@JSONType(employee={"emp_id","name","gender","birthday","race","registedBirthplace","birthplace","communistDate","StartTime","healthStatus","tecPosition","photo","major",
-        "full_time","graduateSchoolForFulltime","part_time","graduateSchoolForParttime","highestDegree","schoolLevel","curPosition","CV","reward_punishment"})
+@JSONType(orders={"emp_id","name","user_id","gender","birthday","race","registedBirthplace","birthplace","communistDate","StartTime","healthStatus","tecPosition","photo","major",
+        "full_time","graduateSchoolForFulltime","part_time","graduateSchoolForParttime","highestDegree","schoolLevel","curPosition","CV","reward_punishment",
+        "assessment_results","company_assessment","familyTable"})
 
 public class employee {
     private int emp_id;
+    private int user_id;
     private String name;
     private String gender;
     private Date birthday;
@@ -37,4 +39,7 @@ public class employee {
     private String curPosition;
     private String CV;
     private String reward_punishment;
+    private String assessment_results;
+    private String company_assessment;
+    private String familyTable;
 }
