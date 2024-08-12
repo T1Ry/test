@@ -66,6 +66,78 @@ $(function () {
 
     window.onresize = barChart.resize;
 
+    var pieChart = echarts.init(document.getElementById("echarts-pie-chart-xueli"));
+    var pieoption = {
+        title : {
+            text: '学历分布',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['专科', '本科','硕士','博士']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'学历分布',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                label: {
+                    show: false,
+                },
+                data:[
+                    {value:335, name:'专科'},
+                    {value:1150, name:'本科'},
+                    {value:1150, name:'硕士'},
+                    {value:230, name:'博士'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+    $(window).resize(pieChart.resize);
+
+    var pieChart = echarts.init(document.getElementById("echarts-pie-chart-xingbie"));
+    var pieoption = {
+        title : {
+            text: '性别分布',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['男', '女']
+        },
+        calculable : true,
+        series : [
+            {
+                name:'性别分布',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                label: {
+                    show: false,
+                },
+                data:[
+                    {value:1485, name:'男'},
+                    {value:1380, name:'女'}
+                ]
+            }
+        ]
+    };
+    pieChart.setOption(pieoption);
+    $(window).resize(pieChart.resize);
+
     var mapChart = echarts.init(document.getElementById("echarts-map-chart"));
     var mapoption = {
         title : {
