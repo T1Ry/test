@@ -9,7 +9,7 @@ import lombok.ToString;
 @JSONType(orders={"user_id","name","password","authority","department_id","phone_num"})
 
 
-public class user {
+public class User {
     private int user_id;
     private String name;
     private String password;

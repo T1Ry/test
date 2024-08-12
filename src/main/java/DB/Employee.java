@@ -1,7 +1,6 @@
 package DB;
 
 import com.alibaba.fastjson.annotation.JSONType;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,7 +14,7 @@ import java.util.Date;
         "full_time","graduateSchoolForFulltime","part_time","graduateSchoolForParttime","highestDegree","schoolLevel","curPosition","CV","reward_punishment",
         "assessment_results","company_assessment","familyTable"})
 
-public class employee {
+public class Employee {
     private int emp_id;
     private int user_id;
     private String name;
